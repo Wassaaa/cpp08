@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <ctime>
 #include <cstdlib>
 #include <list>
+#include <chrono>
 
 void testBasicSpan()
 {
@@ -110,16 +110,18 @@ void testLargeSpan()
 
     largeSpan.addRange(numbers.begin(), numbers.end());
 
-    // Calculate spans
-    clock_t begin = clock();
+    // Calculate spans using chrono for timing
+    auto start = std::chrono::high_resolution_clock::now();
     unsigned int shortest = largeSpan.shortestSpan();
     unsigned int longest = largeSpan.longestSpan();
-    clock_t end = clock();
-    double elapsed = double(end - begin) / CLOCKS_PER_SEC;
+    auto end = std::chrono::high_resolution_clock::now();
+
+    // Calculate duration
+    std::chrono::duration<double> elapsed = end - start;
 
     std::cout << "Shortest span: " << shortest << std::endl;
     std::cout << "Longest span: " << longest << std::endl;
-    std::cout << "Time elapsed: " << elapsed << " seconds" << std::endl;
+    std::cout << "Time elapsed: " << elapsed.count() << " seconds" << std::endl;
 }
 
 void testNegativeNumbers()
@@ -127,6 +129,7 @@ void testNegativeNumbers()
     std::cout << "\n=== Negative Numbers Test ===\n";
     Span sp = Span(5);
     sp.addNumber(-30);
+    sp.addNumber(-29);
     sp.addNumber(-5);
     sp.addNumber(10);
     sp.addNumber(20);
