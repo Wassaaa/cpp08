@@ -11,7 +11,8 @@ public:
     typedef typename container_type::iterator iterator;
     typedef typename container_type::const_iterator const_iterator;
 
-    MutantStack() {};
+    MutantStack()
+        : std::stack<T>() {};
     MutantStack(const MutantStack &other)
         : std::stack<T>(other) {};
     MutantStack &operator=(const MutantStack &other)
