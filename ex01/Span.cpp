@@ -11,6 +11,20 @@ Span::Span(unsigned int N)
     _numbers.reserve(N);
 }
 
+Span::Span(const Span &other)
+    : _numbers(other._numbers)
+{}
+
+Span &Span::operator=(const Span &other)
+{
+    if (this != &other)
+        _numbers = other._numbers;
+    return *this;
+}
+
+Span::~Span()
+{}
+
 void Span::addNumber(int n)
 {
     if (_numbers.size() == _numbers.capacity())
