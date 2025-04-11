@@ -105,7 +105,7 @@ void testLargeSpan()
 
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     for (unsigned int i = 0; i < SIZE; i++) {
-        numbers.push_back(std::rand() % 1000000);
+        numbers.push_back(std::rand());
     }
 
     largeSpan.addRange(numbers.begin(), numbers.end());
